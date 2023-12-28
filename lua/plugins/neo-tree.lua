@@ -7,5 +7,15 @@ return {
         "MunifTanjim/nui.nvim"
     },
     config= function()
+        require("neo-tree").setup({
+            filesystem = {
+            follow_current_file = {
+                enabled=true
+            },
+                filtered_items ={
+                    --       visible= true
+                }
+            }
+        })
     end
 }
