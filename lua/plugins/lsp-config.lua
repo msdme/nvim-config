@@ -16,8 +16,22 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({})
-            lspconfig.intelephense.setup({})
+            lspconfig.lua_ls.setup({
+                capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+                settings = {
+                    format = {
+                        enable = true
+                    }
+                }
+            })
+            lspconfig.intelephense.setup({
+                capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+                settings = {
+                    format = {
+                        enable = true
+                    }
+                }
+            })
             lspconfig.tsserver.setup({})
             vim.keymap.set("n","K",vim.lsp.buf.hover,{})
             vim.keymap.set("n","gd",vim.lsp.buf.definition,{})

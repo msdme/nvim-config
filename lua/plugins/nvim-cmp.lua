@@ -10,9 +10,11 @@ return {
         'hrsh7th/vim-vsnip',
         --snippet engine
         'L3MON4D3/LuaSnip',
+        --"SirVer/ultisnips",
         -- snippets
         "saadparwaiz1/cmp_luasnip",
         "rafamadriz/friendly-snippets",
+        "honza/vim-snippets"
     },
     config = function()
         -- import nvim-cmp plugin safely
@@ -51,7 +53,7 @@ return {
                 ["<S-Down>"] = cmp.mapping.scroll_docs(4),
                 ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
                 ["<C-e>"] = cmp.mapping.abort(), -- close completion window
-                ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
@@ -60,15 +62,15 @@ return {
                         luasnip.expand()
                     elseif luasnip.expand_or_jumpable() then
                         luasnip.expand_or_jump()
-                    elseif check_backspace() then
-                        fallback()
+                        --elseif check_backspace() then
+                        --    fallback()
                     else
                         fallback()
                     end
-                    end, {
+                end, {
                         "i",
                         "s",
-                }),
+                    }),
 
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
@@ -78,10 +80,10 @@ return {
                     else
                         fallback()
                     end
-                    end, {
+                end, {
                         "i",
                         "s",
-                }),
+                    }),
             }),
             -- sources for autocompletion
             sources = cmp.config.sources({
